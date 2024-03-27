@@ -6,3 +6,4 @@ An RDF ontology for describing a Qworum class and the interfaces it implements:
 
 - Interfaces can extend zero, one, or many other interfaces.
 - A Qworum class implements exactly one interface.
+- For their properties, method parameters and method-local classes, Qworum classes can indicate which actual interface implementations they are using.
