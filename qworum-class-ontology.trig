@@ -1,12 +1,12 @@
-BASE <http://ontology.qworum.net/c>
+BASE <http://ontology.qworum.net/c/>
 
 # Metadata
-PREFIX :        <#>
+PREFIX :        <>
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/> 
 PREFIX dcterms: <http://purl.org/dc/terms/>       # https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
 
 # Ontology
-PREFIX qrmi: <http://ontology.qworum.net/i#>
+PREFIX qrmi: <http://ontology.qworum.net/i/>
 PREFIX vann: <http://purl.org/vocab/vann/> 
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>> 
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -15,7 +15,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 # -- Document metadata --------------------------------------------------
 :metadata {
-  <c>
+  <>
     a foaf:Document;
     dcterms:description 'Qworum API description ontology.'@en;
     foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
@@ -23,7 +23,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
     a owl:Ontology;
     vann:preferredNamespacePrefix 'qrmc';
-    vann:preferredNamespaceUri 'http://ontology.qworum.net/c#'.
+    vann:preferredNamespaceUri 'http://ontology.qworum.net/c/'.
 }
 
 # RDF Classes  --------------------------------------------------
