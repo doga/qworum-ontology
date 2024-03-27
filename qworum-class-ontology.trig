@@ -1,59 +1,53 @@
+BASE <http://ontology.qworum.net/c>
 
-BASE <http://ontology.qworum.net/>
-
+# Metadata
 PREFIX :        <#>
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/> 
 PREFIX dcterms: <http://purl.org/dc/terms/>       # https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
-PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf-schema/
-PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#> 
+
+# Ontology
+PREFIX qrmi: <http://ontology.qworum.net/i>
+PREFIX vann: <http://purl.org/vocab/vann/> 
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>> 
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf-schema/
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
 
 # -- Document metadata --------------------------------------------------
 :metadata {
-  <api>
+  <c>
     a foaf:Document;
     dcterms:description 'Qworum API description ontology.'@en;
     foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
-    cc:license :zero.
+    cc:license :zero;
+
+    a owl:Ontology;
+    vann:preferredNamespacePrefix 'qrmc';
+    vann:preferredNamespaceUri 'http://ontology.qworum.net/c'.
 }
 
 # RDF Classes  --------------------------------------------------
 
-# The interface of a Qworum class
-:Interface rdfs:subClassOf rdfs:Class. # has: extends, property, method
-:ExtensionList rdfs:subClassOf :Interface, rdf:Seq. # has: _1, _2, _3, _4, _5, _6
-:Method rdfs:subClassOf rdfs:Class. # has: path, parameter, local, returns, throws
+# The Qworum class
+:Class rdfs:subClassOf rdfs:Class.
+:ClassPointer rdfs:subClassOf rdfs:Class. 
+:Method rdfs:subClassOf rdfs:Class.
 
-:JsonPointer rdfs:subClassOf rdfs:Class. # has: name, schema
-:SemanticDataPointer rdfs:subClassOf rdfs:Class. # has: name, shape
-:InterfacePointer rdfs:subClassOf rdfs:Class. # has: name
-
-:JsonValue rdfs:subClassOf rdfs:Class. # has: schema
-:SemanticDataValue rdfs:subClassOf rdfs:Class. # has: shape
-
-:Fault rdfs:subClassOf rdfs:Class. # has: type
-
-:anyIRI
-  # https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#xsd-datatypes  
-  # if the range of a property cannot be de-referenced (= is not RDF), then make it a xsd:anyURI
-  rdfs:subClassOf xsd:anyURI, rdfs:Datatype;
-  rdfs:comment 'Same as xsd:anyURI, but fixes the typo.'@en.
-
-:methodPath
-  rdfs:subClassOf :anyIRI;
-  rdfs:comment 'An IRI path that does not start with an "/".'@en.
-
-:extends
+:implements
   a rdf:Property;
-  rdfs:domain :Interface;
-  rdfs:range :ExtensionList.
+  rdfs:domain :Class;
+  rdfs:range qrmi:Interface.
+
+:base
+  a rdf:Property;
+  rdfs:comment 'The base path of a Qworum class.'@en;
+  rdfs:domain :Class;
+  rdfs:range :basePath.
 
 :property
   a rdf:Property;
   rdfs:domain :Interface;
-  rdfs:range 
-    :JsonPointer, :SemanticDataPointer, :InterfacePointer;
-
+  rdfs:range :ClassPointer.
 
 :method
   a rdf:Property;
@@ -67,97 +61,26 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 
 :parameter
   a rdf:Property;
+  rdfs:comment '''
+    For each interface parameter defined in this class's interface,
+    specify the actual Qworum class that implements the interface.
+  '''@en;
   rdfs:domain :Method;
-  rdfs:range 
-    :JsonPointer, :SemanticDataPointer, :InterfacePointer.
+  rdfs:range :ClassPointer.
 
 :local
   a rdf:Property;
+  rdfs:comment '''
+    For each local interface defined in this class's interface,
+    specify the actual Qworum class that implements the interface.
+  '''@en;
   rdfs:domain :Method;
-  rdfs:range 
-    :JsonPointer, :SemanticDataPointer, :InterfacePointer.
-
-:returns
-  a rdf:Property;
-  rdfs:domain :Method;
-  rdfs:range 
-    :JsonValue, :SemanticDataValue:.
-
-:throws
-  a rdf:Property;
-  rdfs:domain :Method;
-  rdfs:range :Fault.
+  rdfs:range :ClassPointer.
 
 :name
   a rdf:Property;
-  rdfs:domain
-    :JsonPointer, :SemanticDataPointer, :InterfacePointer;
+  rdfs:domain :ClassPointer;
   rdfs:range xsd:string.
-
-:schema
-  a rdf:Property;
-  rdfs:domain :JsonPointer;
-  rdfs:range :anyIRI.
-
-:shape
-  a rdf:Property;
-  rdfs:domain :SemanticDataPointer;
-  rdfs:range :anyIRI.
-
-:type
-  a rdf:Property;
-  rdfs:domain :Fault;
-  rdfs:range xsd:string.
-
-:_1 
-  rdfs:subPropertyOf rdf:_1;
-  rdfs:domain :ExtensionList;
-  rdfs:range :Interface.
-:_2 
-  rdfs:subPropertyOf rdf:_2;
-  rdfs:domain :ExtensionList;
-  rdfs:range :Interface.
-:_3 
-  rdfs:subPropertyOf rdf:_3;
-  rdfs:domain :ExtensionList;
-  rdfs:range :Interface.
-:_4 
-  rdfs:subPropertyOf rdf:_4;
-  rdfs:domain :ExtensionList;
-  rdfs:range :Interface.
-:_5 
-  rdfs:subPropertyOf rdf:_5;
-  rdfs:domain :ExtensionList;
-  rdfs:range :Interface.
-:_6 
-  rdfs:subPropertyOf rdf:_6;
-  rdfs:domain :ExtensionList;
-  rdfs:range :Interface.
-
-
-
-# The Qworum class
-:Class rdfs:subClassOf rdfs:Class.
-
-:instanceOf
-  a rdf:Property;
-  rdfs:domain :Class;
-  rdfs:range :Interface.
-
-:base
-  a rdf:Property;
-  rdfs:comment 'The base path of a Qworum class.'@en;
-  rdfs:domain :Class;
-  rdfs:range :basePath.
-
-:basePath
-  rdfs:subClassOf :anyIRI;
-  rdfs:comment '''
-    An IRI path that starts and ends with an "/". 
-    The slashes are implicitly added if they are missing.
-  '''@en.
-
-
 
 
 # Other
@@ -166,7 +89,22 @@ PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
   rdfs:subPropertyOf rdfs:comment;
   rdfs:comment 'A comment.'@en;
   rdfs:domain 
-    :Class,
-    :Interface, :ExtensionList, :Method,
-    :JsonPointer,:SemanticDataPointer, 
-    :InterfacePointer.
+    :Class, :ClassPointer, :Method.
+
+:basePath
+  rdfs:subClassOf :anyIRI;
+  rdfs:comment '''
+    An IRI path that starts and ends with an "/". 
+    The slashes are implicitly added if they are missing.
+  '''@en.
+
+:anyIRI
+  # https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#xsd-datatypes  
+  # if the range of a property cannot be de-referenced (= is not RDF), then make it a xsd:anyURI
+  rdfs:subClassOf xsd:anyURI, rdfs:Datatype;
+  rdfs:comment 'Same as xsd:anyURI, but fixes the typo.'@en.
+
+:methodPath
+  rdfs:subClassOf :anyIRI;
+  rdfs:comment 'An IRI path that does not start with an "/".'@en.
+
