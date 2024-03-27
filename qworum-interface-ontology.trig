@@ -22,7 +22,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
     a owl:Ontology;
     vann:preferredNamespacePrefix 'qrmi';
-    vann:preferredNamespaceUri 'http://ontology.qworum.net/i'.
+    vann:preferredNamespaceUri 'http://ontology.qworum.net/i#'.
 }
 
 # RDF Classes  --------------------------------------------------
