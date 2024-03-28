@@ -2,7 +2,7 @@
 
 # Qworum class ontology
 
-An RDF ontology for describing a Qworum class and the interfaces it implements:
+An RDF ontology for describing Qworum classes and the interfaces they implement:
 
 - Interfaces can extend zero, one, or many other interfaces.
 - A Qworum class implements exactly one interface.
