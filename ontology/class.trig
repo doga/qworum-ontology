@@ -19,7 +19,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     a foaf:Document;
     dcterms:description 'Qworum API description ontology.'@en;
     foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
-    cc:license <https://creativecommons.org/publicdomain/zero/1.0/>.
+    cc:license <https://creativecommons.org/publicdomain/zero/1.0/>;
 
     a owl:Ontology;
     vann:preferredNamespacePrefix 'qrmc';
