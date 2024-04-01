@@ -7,6 +7,7 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 
 # interface
 PREFIX : <http://ontology.qworum.net/i/>
+PREFIX qrmm: <http://ontology.qworum.net/m/>
 PREFIX interface: <#> 
 
 :metadata {
@@ -38,3 +39,5 @@ interface:v1
     ]
   ].
 
+# End of file
+[a qrmm:Meta] :end [].
