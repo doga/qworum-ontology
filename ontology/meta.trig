@@ -32,6 +32,15 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 :end
   a rdf:Property;
+  rdfs:comment '''
+    Indicates the end of the RDF document. 
+    Receiving this statement ensures that the reader has got the whole document.
+
+    Use cases:
+    ➜ Streamed documents, where document length is not known from the start.
+    ➜ Using TriG/Turtle as a replacement for JSON-LD. An incomplete JSON-LD document is easy to detect,
+      end with this property TriG/Turtle is now on par with JSON-LD in terms of document integrity detection.
+  '''@en;
   rdfs:domain :Meta;
   rdfs:range :End.
 
