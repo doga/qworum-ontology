@@ -17,4 +17,4 @@ PREFIX :       <#>
   
 
 # End of file
-[a qrmm:Meta] :end [].
+[] qrmm:end [].
