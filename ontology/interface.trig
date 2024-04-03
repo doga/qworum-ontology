@@ -94,12 +94,25 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 :schema
   a rdf:Property;
   rdfs:domain :JsonPointer;
-  rdfs:range :anyIRI.
+  rdfs:range :anyIRI, xsd:string.
 
-:shape # TODO support both shex and shacl (all content types other than 'text/shex' mean shacl)
+:shapes
   a rdf:Property;
+  rdfs:comment '''
+    ShEx schema.
+  '''@en;
+  rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
   rdfs:domain :SemanticDataPointer;
-  rdfs:range :anyIRI.
+  rdfs:range :anyIRI, xsd:string.
+
+:shapeMaps
+  a rdf:Property;
+  rdfs:comment '''
+    The nodes and predicates to validate with the ShEx shapes.
+  '''@en;
+  rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
+  rdfs:domain :SemanticDataPointer;
+  rdfs:range :anyIRI, xsd:string.
 
 :type
   a rdf:Property;

@@ -27,6 +27,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 # RDF Classes  --------------------------------------------------
 
+# End of document
 :Meta rdfs:subClassOf rdfs:Class.
 :End rdfs:subClassOf rdfs:Class.
 
@@ -44,3 +45,11 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
   rdfs:domain :Meta;
   rdfs:range :End.
 
+# Markdown comment
+:comment
+  a rdf:Property;
+  rdfs:comment '''
+    Comment in Markdown format. The leading N whitespace characters are ignored for each line. 
+    N = min(nb of leading ws chars in each line that has non-ws chars)
+  '''@en;
+  rdfs:range rdf:langString.
