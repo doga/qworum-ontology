@@ -8,6 +8,7 @@ PREFIX vann:    <http://purl.org/vocab/vann/>
 
 # Ontology
 PREFIX :     <>
+PREFIX qrmv: <http://ontology.qworum.net/v/>
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf-schema/
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
@@ -95,25 +96,25 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
   a rdf:Property;
   rdfs:seeAlso <https://json-schema.org/learn/getting-started-step-by-step>;
   rdfs:domain :JsonPointer;
-  rdfs:range :anyIRI, xsd:string.
+  rdfs:range qrmv:anyIRI, xsd:string.
 
 :shapes
   a rdf:Property;
-  rdfs:comment '''
+  qrmv:comment '''
     ShEx schema.
   '''@en;
   rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
   rdfs:domain :SemanticDataPointer;
-  rdfs:range :anyIRI, xsd:string.
+  rdfs:range qrmv:anyIRI, xsd:string.
 
 :shapeMap
   a rdf:Property;
-  rdfs:comment '''
+  qrmv:comment '''
     The nodes and predicates to validate with the ShEx shapes.
   '''@en;
   rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
   rdfs:domain :SemanticDataPointer;
-  rdfs:range :anyIRI, xsd:string.
+  rdfs:range qrmv:anyIRI, xsd:string.
 
 :type
   a rdf:Property;
@@ -149,27 +150,13 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 # Other
 
-:comment 
-  rdfs:subPropertyOf rdfs:comment;
-  rdfs:comment 'A comment.'@en;
-  rdfs:domain 
-    :Interface, :ExtensionList, :Method,
-    :JsonPointer,:SemanticDataPointer, 
-    :InterfacePointer.
-
-:anyIRI
-  # https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#xsd-datatypes  
-  # if the range of a property cannot be de-referenced (= is not RDF), then make it a xsd:anyURI
-  rdfs:subClassOf xsd:anyURI, rdfs:Datatype;
-  rdfs:comment 'Same as xsd:anyURI, but fixes the typo.'@en.
-
 :methodPath
-  rdfs:subClassOf :anyIRI;
-  rdfs:comment 'An IRI path that does not start with an "/".'@en.
+  rdfs:subClassOf qrmv:anyIRI;
+  qrmv:comment 'An IRI path that does not start with an "/".'@en.
 
 :basePath
-  rdfs:subClassOf :anyIRI;
-  rdfs:comment '''
+  rdfs:subClassOf qrmv:anyIRI;
+  qrmv:comment '''
     An IRI path that starts and ends with an "/". 
     The slashes are implicitly added if they are missing.
   '''@en.

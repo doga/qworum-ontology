@@ -3,7 +3,7 @@
 PREFIX sh:     <http://www.w3.org/ns/shacl#>
 PREFIX schema: <https://schema.org/>
 PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX qrmm:   <http://ontology.qworum.net/m/>
+PREFIX qrmv:   <http://ontology.qworum.net/v/>
 PREFIX :       <#>
 
 :GraphContainsOneProduct
@@ -19,4 +19,4 @@ PREFIX :       <#>
   
 
 # End of file
-[] qrmm:end [].
+[] qrmv:end [].
