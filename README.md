@@ -15,7 +15,7 @@ Description of Qworum classes and the interfaces they implement:
 ## Various terms
 
 - `qrmv:end` — end-of-document indicator, used for ensuring the completeness of RDF documents that are being read, particularly in streaming scenarios.
-- `qrmv:anyIRI` — an IRI that points to non-RDF content that should not be dereferenced.
+- `qrmv:anyIRI` — an IRI that should not be dereferenced, either because it points to non-RDF content, or because it points to RDF content that is not relevant for the current RDF dataset.
 - `qrmv:comment` — a comment written in Markdown.
 
 ∎
