@@ -13,25 +13,47 @@
     <h1>Qworum ontology</h1>
     <p>An RDF ontology for use within the <a href='https://qworum.net' target='_blank'>Qworum platform</a> and the larger RDF ecosystem.</p>
 
-    <section id="classes">
+    <section id="toc">
+      <h2>Table of content</h2>
+      <ol>
+        <li><a href="#interfaces">Qworum class interfaces</a></li>
+        <li><a href="#classes">Qworum classes</a></li>
+        <li><a href="#various">Various terms</a></li>
+      </ol>
+    </section>
+
+    <section id="interfaces">
       <h2>
-        Classes and interfaces
+        Qworum class interfaces
       </h2>
       <p>
-        Description of Qworum <a href='c/'>classes</a> and the <a href='i/'>interfaces</a> they implement:
+        Description of the interfaces
+        that Qworum classes implement.
+        Interfaces can extend zero, one, or many other interfaces.
       </p>
-      <ul>
-        <li>
-          Interfaces can extend zero, one, or many other interfaces.
-        </li>
-        <li>
-          A Qworum class implements exactly one interface.
-        </li>
-        <li>
-          For their properties and method parameters, Qworum classes can indicate which actual interface implementations they are using.
-        </li>
-      </ul>
+      <p>
+        Here is the <a href='i/'>Turtle file containing this <code>qrmi</code> RDF vocabulary</a>,
+        and the graphical description of the <code>qrmi</code> vocabulary is depicted below.
+      </p>
+      <img src="assets/images/interface.ttl.svg" width="1500ox" alt="Qworum class interfaces">
     </section>
+
+    <section id="classes">
+      <h2>
+        Qworum classes
+      </h2>
+      <p>
+        Description of Qworum classes.
+        A Qworum class implements exactly one interface.
+        For their properties and method parameters, Qworum classes can indicate which actual interface implementations they are using.
+      </p>
+      <p>
+        Here is the <a href='c/'>Turtle file containing the <code>qrmc</code> RDF vocabulary</a>,
+        and the graphical description of the <code>qrmc</code> vocabulary is depicted below.
+      </p>
+      <img src="assets/images/class.ttl.svg" width="1500px" alt="Qworum classes">
+    </section>
+
     <section id="various">
       <h2>Various terms</h2>
       <p>
@@ -42,6 +64,11 @@
           An end-of-document indicator, used for ensuring the completeness of RDF documents that are being read, particularly in streaming scenarios.
         </li>
       </ul>
+      <p>
+        Here is the <a href='v/'>Turtle file containing the <code>qrmv</code> RDF vocabulary</a>,
+        and the graphical description of the <code>qrmv</code> vocabulary is depicted below.
+      </p>
+      <img src="assets/images/various.ttl.svg" width="1100px" alt="Various terms">
     </section>
   </main>
 </body>
