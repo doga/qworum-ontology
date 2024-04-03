@@ -13,7 +13,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
 
 # -- Document metadata --------------------------------------------------
-:metadata {
+# :metadata {
   <>
     a foaf:Document;
     dcterms:description 'RDF document metadata ontology.'@en;
@@ -23,14 +23,11 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     a owl:Ontology;
     vann:preferredNamespacePrefix 'qrmv';
     vann:preferredNamespaceUri 'http://ontology.qworum.net/v/'.
-}
+# }
 
 # RDF Classes  --------------------------------------------------
 
 # End of document
-:Meta rdfs:subClassOf rdfs:Class.
-:End rdfs:subClassOf rdfs:Class.
-
 :end
   a rdf:Property;
   rdfs:comment '''
@@ -41,9 +38,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     ➜ Streamed documents, where document length is not known from the start.
     ➜ Using TriG/Turtle as a replacement for JSON-LD. An incomplete JSON-LD document is easy to detect,
       end with this property TriG/Turtle is now on par with JSON-LD in terms of document integrity detection.
-  '''@en;
-  rdfs:domain :Meta;
-  rdfs:range :End.
+  '''@en.
 
 # Markdown comment
 :comment

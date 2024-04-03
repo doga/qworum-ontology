@@ -14,7 +14,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
 
 # -- Document metadata --------------------------------------------------
-:metadata {
+# :metadata {
   <>
     a foaf:Document;
     dcterms:description 'Qworum API description ontology.'@en;
@@ -24,7 +24,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     a owl:Ontology;
     vann:preferredNamespacePrefix 'qrmi';
     vann:preferredNamespaceUri 'http://ontology.qworum.net/i/'.
-}
+# }
 
 # RDF Classes  --------------------------------------------------
 
@@ -155,4 +155,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     The slashes are implicitly added if they are missing.
   '''@en.
 
+
+# End of file
+[] qrmv:end [].
 
