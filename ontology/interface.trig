@@ -93,6 +93,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 :schema
   a rdf:Property;
+  rdfs:seeAlso <https://json-schema.org/learn/getting-started-step-by-step>;
   rdfs:domain :JsonPointer;
   rdfs:range :anyIRI, xsd:string.
 
