@@ -10,7 +10,7 @@ Description of Qworum classes and the interfaces they implement:
 
 - Interfaces can extend zero, one, or many other interfaces.
 - A Qworum class implements exactly one interface.
-- For their properties and method parameters and method-local classes, Qworum classes can indicate which actual interface implementations they are using.
+- For their properties and method parameters, Qworum classes can indicate which actual interface implementations they are using.
 
 ## Various
 
