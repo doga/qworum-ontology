@@ -12,7 +12,7 @@ Description of Qworum classes and the interfaces they implement:
 - A Qworum class implements exactly one interface.
 - For their properties and method parameters, Qworum classes can indicate which actual interface implementations they are using.
 
-## Various
+## Various terms
 
 An end-of-document indicator, used for ensuring the completeness of RDF documents that are being read, particularly in streaming scenarios.
 
