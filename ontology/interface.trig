@@ -69,12 +69,6 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
   rdfs:range 
     :JsonPointer, :SemanticDataPointer, :InterfacePointer.
 
-:local
-  a rdf:Property;
-  rdfs:domain :Method;
-  rdfs:range 
-    :JsonPointer, :SemanticDataPointer, :InterfacePointer.
-
 :returns
   a rdf:Property;
   rdfs:domain :Method;
