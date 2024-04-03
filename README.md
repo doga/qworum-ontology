@@ -8,9 +8,10 @@ An RDF ontology for use within the [Qworum platform](https://qworum.net) and the
 
 Description of Qworum classes and the interfaces they implement:
 
-- Interfaces can extend zero, one, or many other interfaces.
-- A Qworum class implements exactly one interface.
-- For their properties and method parameters, Qworum classes can indicate which actual interface implementations they are using.
+- A `qrmi:Interface` instance can extend zero, one, or more interface instances.
+- A `qrmc:Class` instance implements exactly one interface.
+- A `qrmi:Interface` instance can define properties and methods. A method is a `qrmi:Method` instance. Properties and method parameters can be JSON, RDF or a Qworum class. For properties and method parameters that are Qworum classes, the actual interface implementations can be indicated.
+- For properties and method parameters that are `qrmc:Class` instances, a `qrmc:Class` instance can indicate which actual interface implementations they are using.
 
 ## Various terms
 
