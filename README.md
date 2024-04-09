@@ -19,4 +19,14 @@ Description of Qworum classes and the interfaces they implement:
 - `qrmv:anyIRI` — an IRI that should not be dereferenced, either because it points to non-RDF content, or because it points to an RDF node that is not relevant for the current RDF dataset.
 - `qrmv:comment` — a comment written in Markdown.
 
+## Voucher
+
+[![Qworum promo code](https://github.com/doga/doga/raw/main/qworum-promo-code-QRMSYY4IJCyNZ.png)](https://qworum.net/en/plans/)
+
+_Promo code: QRMSYY4IJCyNZ_
+
+## License
+
+This content is released under the terms of the [CC0 1.0 Universal license](https://creativecommons.org/publicdomain/zero/1.0/deed.en).
+
 ∎
