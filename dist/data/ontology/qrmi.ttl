@@ -93,14 +93,17 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 :schema
   a rdf:Property;
+  rdfs:comment '''
+    A JSON schema. Can be either linked or inline.
+  '''@en;
   rdfs:seeAlso <https://json-schema.org/learn/getting-started-step-by-step>;
   rdfs:domain :JsonPointer, :JsonValue;
-  rdfs:range qrmv:anyIRI, xsd:string. # TODO disallow xsd:string?
+  rdfs:range qrmv:anyIRI, qrmv:Json.
 
 :shapes
   a rdf:Property;
-  qrmv:comment '''
-    ShEx schema.
+  rdfs:comment '''
+    A ShEx schema. Can be either linked or inline.
   '''@en;
   rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
   rdfs:domain :SemanticDataPointer, :SemanticDataValue;
@@ -108,8 +111,9 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 :shapeMap
   a rdf:Property;
-  qrmv:comment '''
+  rdfs:comment '''
     The nodes and predicates to validate with the ShEx shapes.
+    Can be either linked or inline.
   '''@en;
   rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
   rdfs:domain :SemanticDataPointer, :SemanticDataValue;
@@ -151,11 +155,11 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 :methodPath
   rdfs:subClassOf qrmv:anyIRI;
-  qrmv:comment 'An IRI path that does not start with an "/".'@en.
+  rdfs:comment 'An IRI path that does not start with an "/".'@en.
 
 :basePath
   rdfs:subClassOf qrmv:anyIRI;
-  qrmv:comment '''
+  rdfs:comment '''
     An IRI path that starts and ends with an "/". 
     The slashes are implicitly added if they are missing.
   '''@en.
