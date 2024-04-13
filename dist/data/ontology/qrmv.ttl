@@ -12,19 +12,18 @@ PREFIX :     <>
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf-schema/
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 
 # -- Document metadata --------------------------------------------------
-# :metadata {
-  <>
-    a foaf:Document;
-    dcterms:description 'RDF document metadata ontology.'@en;
-    foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
-    cc:license <https://creativecommons.org/publicdomain/zero/1.0/>;
+<>
+  a foaf:Document;
+  dcterms:description 'RDF document metadata ontology.'@en;
+  foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
+  cc:license <https://creativecommons.org/publicdomain/zero/1.0/>;
 
-    a owl:Ontology;
-    vann:preferredNamespacePrefix 'qrmv';
-    vann:preferredNamespaceUri 'http://ontology.qworum.net/v/'.
-# }
+  a owl:Ontology;
+  vann:preferredNamespacePrefix 'qrmv';
+  vann:preferredNamespaceUri 'http://ontology.qworum.net/v/'.
 
 # RDF Classes  --------------------------------------------------
 
@@ -55,4 +54,17 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
   # https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#xsd-datatypes  
   # if the range of a property cannot be de-referenced (= is not RDF), then make it a xsd:anyURI
   rdfs:subClassOf xsd:anyURI, rdfs:Datatype;
-  rdfs:comment 'Non-dereferenceable IRI (does not contain RDF). Same as xsd:anyURI, but fixes the typo.'@en.
+  rdfs:comment 'Non-dereferenceable IRI (does not point to an RDF node). Same as xsd:anyURI, but fixes the typo.'@en;
+  :sameAs xsd:anyURI.
+
+# sameAs
+:sameAs
+  a rdf:Property;
+  rdfs:comment '''
+    Indicates that the subject and object are two different representations
+    of the same thing.
+  '''@en;
+  skos:broader <https://schema.org/sameAs>;
+  rdfs:domain rdfs:Resource;
+  rdfs:range rdfs:Resource.
+

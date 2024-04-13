@@ -1,0 +1,43 @@
+# BASE <https://shop.example/qworum/interfaces/shop/v1.ttl>
+
+PREFIX qrmi: <http://ontology.qworum.net/i/>
+PREFIX qrmv: <http://ontology.qworum.net/v/>
+PREFIX : <#> 
+
+:id # a qrmi:Interface ; 
+  qrmi:extends <https://qworum.net/qworum/interfaces/application/v1.ttl#id> ;
+  qrmv:comment '''
+    # Interface for an online shop
+
+    Extends the base application interface with these methods:
+
+    - `view-article/`
+    - `checkout/`
+  '''@en ;
+
+
+  qrmi:method [ # a qrmi:Method ;
+    qrmi:path 'view-article/'^^qrmi:methodPath ;
+
+    qrmi:parameter [ # a qrmi:JsonPointer ;
+      qrmi:name 'article id' ;
+      qrmi:schema 'https://qworum.net/qworum/data-validation/schemas/non-negative-integer.schema.json'^^qrmv:anyIRI
+    ] ;
+
+    qrmi:returns [ # a qrmi:JsonValue ;
+      qrmi:schema 'https://qworum.net/qworum/data-validation/schemas/null.schema.json'^^qrmv:anyIRI
+    ]
+  ] ;
+
+
+  qrmi:method [ # a qrmi:Method ;
+    qrmi:path 'checkout/'^^qrmi:methodPath ;
+
+    qrmi:returns [ # a qrmi:JsonValue ;
+      qrmi:schema 'https://qworum.net/qworum/data-validation/schemas/boolean.schema.json'^^qrmv:anyIRI
+    ]
+  ] .
+
+
+# End of file
+[] qrmv:end [].

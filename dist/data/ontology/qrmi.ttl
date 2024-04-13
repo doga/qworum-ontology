@@ -15,17 +15,22 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
 
 # -- Document metadata --------------------------------------------------
-# :metadata {
-  <>
-    a foaf:Document;
-    dcterms:description 'Qworum API description ontology.'@en;
-    foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
-    cc:license <https://creativecommons.org/publicdomain/zero/1.0/>;
+<>
+  a foaf:Document;
+  dcterms:description '''
+    Ontology for defining the interfaces that Qworum classes can implement.
+    Interfaces can extend other interfaces, and define object methods.
 
-    a owl:Ontology;
-    vann:preferredNamespacePrefix 'qrmi';
-    vann:preferredNamespaceUri 'http://ontology.qworum.net/i/'.
-# }
+    Use cases:
+    ➜ Developer looking for services (classes) that implement an interface.
+    ➜ Runtime verification by the Qworum runtime (check call params, return values etc).
+  '''@en;
+  foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
+  cc:license <https://creativecommons.org/publicdomain/zero/1.0/>;
+
+  a owl:Ontology;
+  vann:preferredNamespacePrefix 'qrmi';
+  vann:preferredNamespaceUri 'http://ontology.qworum.net/i/'.
 
 # RDF Classes  --------------------------------------------------
 
@@ -48,12 +53,6 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
   rdfs:domain :Interface;
   rdfs:range :ExtensionList.
 
-:property
-  a rdf:Property;
-  rdfs:domain :Interface;
-  rdfs:range 
-    :JsonPointer, :SemanticDataPointer, :InterfacePointer.
-
 :method
   a rdf:Property;
   rdfs:domain :Interface;
@@ -62,7 +61,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 :path
   a rdf:Property;
   rdfs:domain :Method;
-  rdfs:range :methodPath.
+  rdfs:range :methodPath. # TODO allow xsd:string?
 
 :parameter
   a rdf:Property;
@@ -87,11 +86,16 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     :JsonPointer, :SemanticDataPointer, :InterfacePointer;
   rdfs:range xsd:string.
 
+:interface
+  a rdf:Property;
+  rdfs:domain :InterfacePointer;
+  rdfs:range :Interface.
+
 :schema
   a rdf:Property;
   rdfs:seeAlso <https://json-schema.org/learn/getting-started-step-by-step>;
-  rdfs:domain :JsonPointer;
-  rdfs:range qrmv:anyIRI, xsd:string.
+  rdfs:domain :JsonPointer, :JsonValue;
+  rdfs:range qrmv:anyIRI, xsd:string. # TODO disallow xsd:string?
 
 :shapes
   a rdf:Property;
@@ -99,7 +103,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     ShEx schema.
   '''@en;
   rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
-  rdfs:domain :SemanticDataPointer;
+  rdfs:domain :SemanticDataPointer, :SemanticDataValue;
   rdfs:range qrmv:anyIRI, xsd:string.
 
 :shapeMap
@@ -108,7 +112,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
     The nodes and predicates to validate with the ShEx shapes.
   '''@en;
   rdfs:seeAlso <https://shex.io/shex-primer/#quickStart>;
-  rdfs:domain :SemanticDataPointer;
+  rdfs:domain :SemanticDataPointer, :SemanticDataValue;
   rdfs:range qrmv:anyIRI, xsd:string.
 
 :type

@@ -1,0 +1,8 @@
+BASE <https://shop.example/qworum.ttl>
+
+PREFIX qrmc: <http://ontology.qworum.net/c/>
+PREFIX qrmv: <http://ontology.qworum.net/v/>
+
+</qworum/classes/shop/v1.ttl#id> a qrmc:Class.
+
+[] qrmv:end [].

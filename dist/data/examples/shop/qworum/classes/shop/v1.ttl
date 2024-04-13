@@ -1,0 +1,12 @@
+PREFIX qrmc: <http://ontology.qworum.net/c/>
+PREFIX : <#>
+
+:id
+  a qrmc:Class ;
+  qrmc:implements </qworum/interfaces/shop/v1.ttl#id> ;
+  qrmc:base '/v1/'^^qrmc:basePath ;
+
+  qrmc:property [
+    qrmc:name 'shopping cart' ;
+    qrmc:class <https://shopping-cart.example/qworum/classes/v1.ttl#id>
+  ] .
