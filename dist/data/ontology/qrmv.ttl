@@ -61,10 +61,10 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   :sameAs xsd:anyURI.
 
 # JSON string
-:Json
+:Json # TODO also define inline ShEx, ShEx shapemaps.
   rdfs:subClassOf xsd:string;
   rdfs:comment '''
-    A JSON document.
+    An inline JSON document.
   '''@en;
   rdfs:seeAlso <https://www.json.org/json-en.html>.
 
