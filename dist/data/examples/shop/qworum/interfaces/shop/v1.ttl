@@ -34,6 +34,7 @@ PREFIX : <#>
     qrmi:path 'checkout/'^^qrmi:methodPath ;
 
     qrmi:returns [ # a qrmi:JsonValue ;
+      qrmv:comment 'A boolean.' ;
       qrmi:schema '''
         {
           "$schema": "http://json-schema.org/draft-07/schema#",

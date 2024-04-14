@@ -1,4 +1,4 @@
-BASE <http://ontology.qworum.net/v/>
+BASE <http://ontology.qworum.net/v/> # TODO end with #?
 
 # Metadata
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/> 
@@ -57,8 +57,8 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   rdfs:comment '''
     Non-dereferenceable IRI (does not point to an RDF node). 
     Same as xsd:anyURI, but fixes the typo.
-  '''@en;
-  :sameAs xsd:anyURI.
+  '''@en.
+  # :sameAs xsd:anyURI.
 
 # JSON string
 :Json # TODO also define inline ShEx, ShEx shapemaps.
@@ -69,13 +69,13 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   rdfs:seeAlso <https://www.json.org/json-en.html>.
 
 # sameAs
-:sameAs
-  a rdf:Property;
-  rdfs:comment '''
-    Indicates that the subject and object are two different representations
-    of the same thing.
-  '''@en;
-  skos:broader <https://schema.org/sameAs>;
-  rdfs:domain rdfs:Resource;
-  rdfs:range rdfs:Resource.
+# :sameAs
+#   a rdf:Property;
+#   rdfs:comment '''
+#     Indicates that the subject and object are two different representations
+#     of the same thing.
+#   '''@en;
+#   skos:broader <https://schema.org/sameAs>;
+#   rdfs:domain rdfs:Resource;
+#   rdfs:range rdfs:Resource.
 

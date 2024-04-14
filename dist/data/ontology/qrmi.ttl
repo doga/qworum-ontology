@@ -1,4 +1,4 @@
-BASE <http://ontology.qworum.net/i/>
+BASE <http://ontology.qworum.net/i/> # TODO end with #?
 
 # Metadata
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/> 
