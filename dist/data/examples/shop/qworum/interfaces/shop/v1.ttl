@@ -1,6 +1,6 @@
 # BASE <https://shop.example/qworum/interfaces/shop/v1.ttl>
 
-PREFIX qrmi: <http://ontology.qworum.net/i/>
+PREFIX qrmi: <http://ontology.qworum.net/interface/>
 PREFIX qrmv: <http://ontology.qworum.net/v/>
 PREFIX : <#> 
 

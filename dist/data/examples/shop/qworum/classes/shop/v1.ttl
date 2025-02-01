@@ -1,4 +1,4 @@
-PREFIX qrmc: <http://ontology.qworum.net/c/>
+PREFIX qrmc: <http://ontology.qworum.net/class/>
 PREFIX : <#>
 
 :id

@@ -1,0 +1,310 @@
+BASE <http://ontology.qworum.net/users/> # TODO end with #?
+
+# Metadata
+PREFIX foaf:    <http://xmlns.com/foaf/0.1/> 
+PREFIX dcterms: <http://purl.org/dc/terms/>       # https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
+PREFIX cc:      <http://creativecommons.org/ns#> 
+PREFIX vann:    <http://purl.org/vocab/vann/> 
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+
+# Ontology
+PREFIX :     <>
+PREFIX qrmc: <http://ontology.qworum.net/class/>
+PREFIX qrmv: <http://ontology.qworum.net/v/>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> # https://www.w3.org/TR/rdf-schema/
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+
+# TODO comment this out
+PREFIX ex: <http://site.example/#> 
+
+# -- Document metadata ---------------------------------------------
+<>
+  a foaf:Document;
+  dcterms:description '''
+    Ontology for describing the users of Qworum applications. Defines classes for:
+    
+    - user roles
+    - user permissions
+    - groups
+    - group membership conditions
+
+    This ontology is used for:
+
+    - configuring web browsers
+    - role-based access restrictions for API endpoints in API definitions
+  '''@en;
+  foaf:maker <https://qworum.net/data/DoğaArmangil.ttl#id>;
+  cc:license <https://creativecommons.org/publicdomain/zero/1.0/>;
+
+  a owl:Ontology;
+  vann:preferredNamespacePrefix 'qrmu';
+  vann:preferredNamespaceUri 'http://ontology.qworum.net/users/'.
+
+# -- RDF Classes  --------------------------------------------------
+
+# TODO intents: linking intent Ids to services
+
+:User # TODO user data
+  rdfs:subClassOf rdfs:Class. 
+
+:Role
+  rdfs:subClassOf rdfs:Class. 
+
+:AssignedRole
+  rdfs:subClassOf rdfs:Class. 
+
+:Permission
+  rdfs:subClassOf rdfs:Class. 
+
+:Group # TODO group data
+  rdfs:subClassOf rdfs:Class. 
+
+:Invitation
+  rdfs:subClassOf rdfs:Class. 
+
+:InvitationCondition
+  rdfs:subClassOf rdfs:Class. 
+
+:EitherInvitationCondition
+  rdfs:subClassOf :InvitationCondition. 
+
+:InvitationDeadlineCondition
+  rdfs:subClassOf :InvitationCondition. 
+
+:InvitationInactivityCondition
+  rdfs:subClassOf :InvitationCondition. 
+
+:InvitationStatus
+  rdfs:subClassOf rdfs:Class. 
+
+:MembershipCondition
+  rdfs:subClassOf rdfs:Class. 
+
+:EitherMembershipCondition
+  rdfs:subClassOf :MembershipCondition. 
+
+:invitation
+  a rdf:Property;
+  rdfs:comment 'invitation to join the group'@en;
+  rdfs:domain :Group;
+  rdfs:range :Invitation.
+
+:invitationRecepient
+  a rdf:Property;
+  rdfs:domain :Invitation;
+  rdfs:range :User.
+
+:invitationDeadline
+  a rdf:Property;
+  rdfs:domain :InvitationDeadlineCondition;
+  rdfs:range xsd:dateTime.
+
+:inactivityDuration
+  a rdf:Property;
+  rdfs:domain :InvitationInactivityCondition;
+  rdfs:range xsd:duration. # https://en.wikipedia.org/wiki/ISO_8601
+
+:invitationCondition
+  a rdf:Property;
+  rdfs:domain :Invitation;
+  rdfs:range :InvitationCondition.
+
+:invitationStatus
+  a rdf:Property;
+  rdfs:domain :Invitation;
+  rdfs:range xsd:string. # 'pending' is default. others are 'sent' 'accepted'
+
+:membershipCondition
+  a rdf:Property;
+  rdfs:comment 'all of these conditions must be met'@en;
+  rdfs:domain :Group;
+  rdfs:range :MembershipCondition.
+
+:eitherOneOfTheseInvitationConditions
+  a rdf:Property;
+  rdfs:comment 'at least one of these invitation conditions must be met'@en;
+  rdfs:domain :EitherInvitationCondition;
+  rdfs:range :InvitationCondition.
+
+:eitherOneOfTheseMembershipConditions
+  a rdf:Property;
+  rdfs:comment 'at least one of these membership conditions must be met'@en;
+  rdfs:domain :EitherMembershipCondition;
+  rdfs:range :MembershipCondition.
+
+:member
+  a rdf:Property;
+  rdfs:domain :Group;
+  rdfs:range :User.  # default member role is :user
+
+:role
+  a rdf:Property;
+  rdfs:domain :AssignedRole;
+  rdfs:range :Role.
+
+:assignee
+  a rdf:Property;
+  rdfs:domain :Role;
+  rdfs:range :User.
+
+:onService
+  a rdf:Property;
+  rdfs:domain :Role;
+  rdfs:range qrmc:Service. # TODO define :Service in qrmc
+
+:memberRole
+  a rdf:Property;
+  rdfs:domain :Group;
+  rdfs:range :AssignedRole.
+
+:permission
+  a rdf:Property;
+  rdfs:domain :Role;
+  rdfs:range :Permission.
+
+:serviceRestriction
+  a rdf:Property;
+  rdfs:comment 'if this predicate is used, then the group members can only use the specified services.'@en;
+  rdfs:domain :Group;
+  rdfs:range qrmc:Service.
+
+# generic user roles and permissions
+:owner
+  rdfs:comment '''
+    user can invite/remove group owners (except self), group managers, application users
+  '''@en;
+  a rdf:Property;
+  rdfs:domain :Group;
+  rdfs:range :User.
+
+:manager
+  rdfs:comment 'user can invite/remove application users'@en;
+  a rdf:Property;
+  rdfs:domain :Group;
+  rdfs:range :User.
+
+:allPermissions
+  a :Permission;
+  rdfs:comment 'Permission to use all applications without restrictions.'@en.
+
+:viewPermission
+  a :Permission;
+  rdfs:comment 'Permission to view all non-private group data in applications.'@en.
+
+# roles
+:user
+  a :Role;
+  :permission :allPermissions.
+
+:viewer
+  a :Role;
+  :permission :viewPermission.
+
+# invitations
+:ownerDeceased
+  a :InvitationCondition;
+  rdfs:comment 'Invitation sent when group owner is deceased'@en.
+
+# -- Usage (Comment out this section) ---------------
+
+# membership conditions (make these standard?)
+ex:officialIdentification a :MembershipCondition.
+ex:ssoIdentification a :MembershipCondition.
+ex:qworumIdentification a :MembershipCondition.
+
+# application-specific roles
+ex:commentsOnNonPrivateData
+  a :Permission;
+  rdfs:comment 'Comments on non-private data.'@en.
+
+ex:repliesToOtherCommentators a :Permission.
+
+ex:commentator
+  a :Role;
+  :permission
+    ex:commentsOnNonPrivateData, ex:repliesToOtherCommentators.
+
+# users 
+ex:user0 a :User.
+ex:user1 a :User.
+ex:user2 a :User.
+ex:user3 a :User.
+
+# groups
+ex:personalGroup # the minimal group has one owner and one member (for personal groups both are the same user)
+  a :Group;
+  :owner ex:user0;
+  :member ex:user0;
+  :invitation [
+    :invitationRecipient ex:userX;
+    :invitationCondition [
+      a :EitherInvitationCondition;
+      :eitherOneOfTheseInvitationConditions
+        :ownerDeceased, 
+        [
+          a :InvitationInactivityCondition;
+          :inactivityDuration 'P6M'^^xsd:duration # 6 months
+        ]
+    ];
+    :invitationForRole :viewer
+  ].
+
+ex:workGroup 
+  a :Group;
+  :owner ex:user0;
+  :manager ex:user1;
+
+  # Invitations
+  :invitation [
+    :invitationRecipient ex:user555;
+    :invitationCondition [
+      a :InvitationDeadlineCondition;
+      :invitationDeadline '2025-03-01T00:00:00+00:00'^^xsd:dateTime
+    ];
+
+    # BUG change property names
+    # TODO define classes and properties
+    :invitationForRole [
+      :role :user
+    ], [
+      :role :viewer;
+      :onService ex:service1
+    ]
+  ];
+  :membershipCondition # officialId && (ssoId || qworumId)
+    ex:officialIdentification, 
+    [
+      # a :EitherMembershipCondition;
+      :eitherOneOfTheseMembershipConditions
+        ex:ssoIdentification, ex:qworumIdentification
+    ];
+
+  # Members
+  :member # default role is :user
+    ex:user2, ex:user3;
+  :memberRole [ # :user2's default role is :viewer
+    # a :AssignedRole;
+    :role :viewer;
+    :assignee ex:user2
+  ], [ # :user2 is a :commentator on :service1
+    # a :AssignedRole;
+    :role ex:commentator;
+    :assignee ex:user2;
+    :onService ex:service1
+  ], [ # :user3 is a :viewer and :commentator on :service2 
+    # a :AssignedRole;
+    :role :viewer, ex:commentator;
+    :assignee ex:user3;
+    :onService ex:service2
+  ];
+
+  # Services
+  :serviceRestriction
+    ex:service1, ex:service2, ex:service3.
+
+
+# End of file (uncomment this section) ---------------
+# [] qrmv:end [].
+
