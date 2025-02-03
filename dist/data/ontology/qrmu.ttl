@@ -70,7 +70,7 @@ PREFIX ex: <http://site.example/#>
 :EitherInvitationCondition
   rdfs:subClassOf :InvitationCondition. 
 
-:InvitationDeadlineCondition
+:InvitationDeadlineTrigger
   rdfs:subClassOf :InvitationCondition. 
 
 :InvitationInactivityCondition
@@ -98,7 +98,7 @@ PREFIX ex: <http://site.example/#>
 
 :invitationDeadline
   a rdf:Property;
-  rdfs:domain :InvitationDeadlineCondition;
+  rdfs:domain :InvitationDeadlineTrigger;
   rdfs:range xsd:dateTime.
 
 :inactivityDuration
@@ -106,7 +106,7 @@ PREFIX ex: <http://site.example/#>
   rdfs:domain :InvitationInactivityCondition;
   rdfs:range xsd:duration. # https://en.wikipedia.org/wiki/ISO_8601
 
-:invitationCondition
+:invitationTrigger
   a rdf:Property;
   rdfs:domain :Invitation;
   rdfs:range :InvitationCondition.
@@ -239,7 +239,7 @@ ex:personalGroup # the minimal group has one owner and one member (for personal 
   :member ex:user0;
   :invitation [
     :invitationRecipient ex:userX;
-    :invitationCondition [
+    :invitationTrigger [
       a :EitherInvitationCondition;
       :eitherOneOfTheseInvitationConditions
         :ownerDeceased, 
@@ -258,9 +258,9 @@ ex:workGroup
 
   # Invitations
   :invitation [
-    :invitationRecipient ex:user555;
-    :invitationCondition [
-      a :InvitationDeadlineCondition;
+    :invitationRecipient ex:user555; # BUG what is the user's ID? accountId? id in parent group?
+    :invitationTrigger [
+      a :InvitationDeadlineTrigger;
       :invitationDeadline '2025-03-01T00:00:00+00:00'^^xsd:dateTime
     ];
 
